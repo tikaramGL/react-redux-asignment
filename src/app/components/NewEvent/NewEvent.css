@@ -1,0 +1,31 @@
+#newEventForm {
+    border: 2px solid #90959a;
+    margin-left: 20%;
+    margin-right: 20%;
+    border-radius: 5px;
+}
+
+#backBtn {
+    float: right;
+    margin: 10px;
+}
+
+#newEventForm>form {
+    margin-top: 3em;
+}
+
+#newEventForm>form>div>input {
+    width: 95%;
+    padding: .375rem .75rem;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+
+#newEventForm>form>div>.submitBtn {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-top: 6%;
+    background-color: lawngreen;
+    width: 15%;
+}

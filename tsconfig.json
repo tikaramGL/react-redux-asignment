@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "allowSyntheticDefaultImports": true,
+      "jsx": "react", // use typescript to transpile jsx to js
+      "module": "commonjs", // specify module code generation
+      "noImplicitAny": true, // strict type checking
+      "outDir": "./build/", // path to output directory
+      "preserveConstEnums": true,
+      "removeComments": true,
+      "sourceMap": true, // allow sourcemap support (for debugging)
+      "target": "es5"  // specify ECMAScript target version
+    },
+    "include": [
+      "./src/**/**/*"
+    ]
+  }

@@ -1,0 +1,25 @@
+.cal_handlers {
+    margin: 20px;
+}
+
+button {
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    background-color: #dae0e5;
+    border-color: #d3d9df;
+}
+
+header {
+    font-size: x-large;
+    background-color: #8c57d9;
+}
+
+#addEvent {
+    float: right;
+}
+
+.view-container {
+    overflow-y: scroll;
+    max-height: 529px;
+}
