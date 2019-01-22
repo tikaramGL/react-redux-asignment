@@ -20,36 +20,49 @@ const dataArray = [
 ]
 
 let initialState = {
-    events : dataArray
+    events: dataArray
 }
 
-const getTimezoneDifference = (time : any) =>{
-    return time + new Date().getTimezoneOffset()*60*1000
+const getTimezoneDifference = (time: any) => {
+    return time + new Date().getTimezoneOffset() * 60 * 1000
 }
 
-export const headerReducer = (state:any, action:any) => {
-    switch(action.type) {
+export const headerReducer = (state: any, action: any) => {
+    switch (action.type) {
 
         case "ADD_EVENT":
-        let startDate = new Date(getTimezoneDifference(action.payload.target[1].valueAsNumber))
-        let endDate = new Date(getTimezoneDifference(action.payload.target[2].valueAsNumber))
-        let title = action.payload.target[0].value
-        let eventObj = {
-            startTime: startDate.toString(),
-            endTime: endDate.toString(),
-            title: title ,
-            id: state.events[state.events.length - 1 ].id+1,
-        }
-        return {...state, events : [...state.events, eventObj]};
+            let startDate = new Date(getTimezoneDifference(action.payload.target[1].valueAsNumber))
+            let endDate = new Date(getTimezoneDifference(action.payload.target[2].valueAsNumber))
+            let title = action.payload.target[0].value
+            let eventObj = {
+                startTime: startDate.toString(),
+                endTime: endDate.toString(),
+                title: title,
+                id: state.events[state.events.length - 1].id + 1,
+            }
+            return { ...state, events: [...state.events, eventObj] };
 
         case 'EDIT_EVENT':
-        return {}
+            let updateObj = {
+                startDate: action.payload.startTime || "",
+                endDate: action.payload.endTime || "",
+                title: action.payload.title || "",
+                id: parseInt(action.payload.id) || ""
+            }
+            let foundItem = state.events.find((ele: any) => ele.id == updateObj.id)
+            foundItem.id = updateObj.id;
+            foundItem.startTime = updateObj.startDate;
+            foundItem.endTime = updateObj.endDate;
+            foundItem.title = updateObj.title
+            state.events = state.events.filter((ele: any) => ele.id != updateObj.id)
+            let x = { ...state, events: [...state.events, foundItem] };
+            return x;
 
         case "DELETE_EVENT":
-        let filteredArray = state.events.filter((ele :any) => ele.id != parseInt(action.payload))
-        return { ...state, events : filteredArray}
+            let filteredArray = state.events.filter((ele: any) => ele.id != parseInt(action.payload))
+            return { ...state, events: filteredArray }
 
         default:
-        return initialState;
+            return initialState;
     }
 }

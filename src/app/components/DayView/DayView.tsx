@@ -64,12 +64,6 @@ class DayView extends React.Component<Props> {
                 editLink.innerHTML = 'Edit';
 
                 timeSt.appendChild(editLink);
-
-                // const deleteLink = document.createElement('a');
-                // deleteLink.setAttribute('href',"#/delete-event");
-                // deleteLink.setAttribute('class', 'deleteEventBtn');
-                // deleteLink.innerHTML = 'Delete';
-               
             }
         })
     }
