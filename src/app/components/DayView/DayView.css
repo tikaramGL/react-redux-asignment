@@ -40,13 +40,14 @@ td>a.editEventBtn {
   text-decoration: none;
 }
 
-td>a.deleteEventBtn {
+td>button {
   float: right;
-  width: 42px;
-  height: 16px;
+  /* width: 42px; */
+  height: 24px;
+  margin-top: -5px;
   background: #4E9CAF;
-  padding: 1px 4px 1px 4px;
-  text-align: center;
+  /* padding: 1px 4px 1px 4px;
+  text-align: center; */
   border-radius: 5px;
   color: white;
   text-decoration: none;

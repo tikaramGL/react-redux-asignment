@@ -7,13 +7,15 @@ import { connect } from 'react-redux';
 
 interface Props {
    addEvent ?: (event:any) => void 
+   history : any
 }
 
 class NewEvent extends React.Component<Props> {
     render() {
       const handleEvent = (event:any) => {
-         console.log(event)
+         event.preventDefault();
          this.props.addEvent(event)
+         this.props.history.push("/");
       }
 
       return (
@@ -25,7 +27,7 @@ class NewEvent extends React.Component<Props> {
             <form onSubmit={() => handleEvent(event)}>
                <div>
                   <label>Event Title:</label>
-                  <input id="title" name="title" />
+                  <input id="title" name="title" autoComplete="off" />
                </div>
                <div>
                   <label>Start Time:</label>

@@ -4,10 +4,12 @@ import * as moment from 'moment';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { addEvent } from '../../actions/header';
+import { deleteEvent } from '../../actions/header';
 
 interface Props {
     headerData: [],
     addEvent?: (currId: any) => void,
+    deleteEvent?: (eventId: any) => void,
     currentDate : any
 }
 
@@ -44,26 +46,30 @@ class DayView extends React.Component<Props> {
             const currentFDate = moment(this.props.currentDate).format("MMM DD YYYY");
             if(eventDate === currentFDate) {
                 const eventTime = event['startTime'].substring(16, 24);
-                console.log(eventTime)
-                
+                                
                 let timeSt:any = document.querySelector('[data-time='+'"'+eventTime+'"'+']');
                 timeSt.innerHTML = event['title'];
                 timeSt.style.borderLeft = '3px solid #8c57d9';
 
+                const deleteLink = document.createElement('button')
+                deleteLink.setAttribute('data-val',event['id'])
+                deleteLink.addEventListener("click", this.props.deleteEvent);
+                deleteLink.innerHTML = 'x';
+
+                timeSt.appendChild(deleteLink);
+
                 const editLink = document.createElement('a');
-                editLink.setAttribute('href',"#/edit-event");
+                editLink.setAttribute('href',"#/edit-event/"+event['id']);
                 editLink.setAttribute('class', 'editEventBtn');
                 editLink.innerHTML = 'Edit';
 
                 timeSt.appendChild(editLink);
 
-                const deleteLink = document.createElement('a');
-                deleteLink.setAttribute('href',"#/delete-event");
-                deleteLink.setAttribute('class', 'deleteEventBtn');
-                deleteLink.innerHTML = 'Delete';
-
-                timeSt.appendChild(deleteLink);
-                timeSt.appendChild(editLink);
+                // const deleteLink = document.createElement('a');
+                // deleteLink.setAttribute('href',"#/delete-event");
+                // deleteLink.setAttribute('class', 'deleteEventBtn');
+                // deleteLink.innerHTML = 'Delete';
+               
             }
         })
     }
@@ -101,7 +107,7 @@ const mapStateToProps = (state: any) => {
 }
 
 const matchDispatchToProps = (dispatch: any) => {
-    return bindActionCreators({ addEvent: addEvent }, dispatch)
+    return bindActionCreators({ addEvent: addEvent, deleteEvent : deleteEvent}, dispatch)
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(DayView);

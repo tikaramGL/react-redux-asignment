@@ -12,7 +12,7 @@ const createRoutes = (
         <Switch>
             <Route exact path="/" component={Container} />
             <Route path="/new-event" component={NewEvent} />
-            <Route path="/edit-event" component={EditEvent} />
+            <Route path="/edit-event/:id" component={EditEvent} />
             <Route path="/delete-event" component={DeleteEvent} />
             <Route component={Error} />
         </Switch>

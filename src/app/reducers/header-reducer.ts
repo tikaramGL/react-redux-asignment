@@ -12,8 +12,8 @@ const dataArray = [
         "id": 2
     },
     {
-        "startTime": "Sun Jan 20 2019 20:00:00 GMT+0530 (IST)",
-        "endTime": "Sun Jan 20 2019 21:00:00 GMT+0530 (IST)",
+        "startTime": "Sun Jan 20 2019 12:00:00 GMT+0530 (IST)",
+        "endTime": "Sun Jan 20 2019 13:00:00 GMT+0530 (IST)",
         "title": "Event 3",
         "id": 3
     }
@@ -23,10 +23,31 @@ let initialState = {
     events : dataArray
 }
 
+const getTimezoneDifference = (time : any) =>{
+    return time + new Date().getTimezoneOffset()*60*1000
+}
+
 export const headerReducer = (state:any, action:any) => {
     switch(action.type) {
+
         case "ADD_EVENT":
-        return state;
+        let startDate = new Date(getTimezoneDifference(action.payload.target[1].valueAsNumber))
+        let endDate = new Date(getTimezoneDifference(action.payload.target[2].valueAsNumber))
+        let title = action.payload.target[0].value
+        let eventObj = {
+            startTime: startDate.toString(),
+            endTime: endDate.toString(),
+            title: title ,
+            id: state.events[state.events.length - 1 ].id+1,
+        }
+        return {...state, events : [...state.events, eventObj]};
+
+        case 'EDIT_EVENT':
+        return {}
+
+        case "DELETE_EVENT":
+        let filteredArray = state.events.filter((ele :any) => ele.id != parseInt(action.payload))
+        return { ...state, events : filteredArray}
 
         default:
         return initialState;

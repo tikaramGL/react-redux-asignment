@@ -4,12 +4,30 @@ import { Link } from 'react-router-dom';
 import {addEvent} from '../../actions/header';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import store from '../../App';
 
 interface Props {
-   addEvent ?: (event:any) => void 
+   addEvent ?: (event:any) => void,
+   match: any
 }
 
 class EditEvent extends React.Component<Props> {
+   constructor (props:Props) {
+      super(props);
+      this.state = {};
+   }  
+
+   componentDidMount() {
+      this.getEventObj();
+   }
+
+   getEventObj = () => {
+      alert("Here")
+      const event = store.getState();
+      console.log(event)
+      return {event}
+   }
+
     render() {
       const handleEvent = (event:any) => {
          console.log(event)
@@ -22,6 +40,7 @@ class EditEvent extends React.Component<Props> {
                <button id="backBtn">Back</button>
             </Link>
             <br />
+            <h4>{this.props.match.params.id}</h4>
             <form onSubmit={() => handleEvent(event)}>
                <div>
                   <label>Event Title:</label>

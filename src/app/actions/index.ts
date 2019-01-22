@@ -1,5 +1,5 @@
 export enum ActionTypes {
-    ADD_EVENT = '[events] ADD_EVENT',
-    EDIT_EVENT = '[events] EDIT_EVENT',
-    DELETE_EVENT = '[events] DELETE_EVENT'
+    ADD_EVENT = '[event] ADD_EVENT',
+    EDIT_EVENT = '[event] EDIT_EVENT',
+    DELETE_EVENT = '[event] DELETE_EVENT'
 }
