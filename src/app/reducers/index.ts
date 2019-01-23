@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import {headerReducer} from './header-reducer';
+import { headerReducer } from './header-reducer';
 
 const allReducer = combineReducers({
     header: headerReducer,

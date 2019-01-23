@@ -17,7 +17,7 @@ interface State {
 }
 
 class Container extends React.Component<Props, State> {
-   constructor(props:Props) {
+   constructor(props: Props) {
       super(props);
 
       this.state = {
@@ -26,32 +26,32 @@ class Container extends React.Component<Props, State> {
    }
 
    prevDay = () => {
-      const curDate = this.state.currentDate; 
+      const curDate = this.state.currentDate;
       var previousDay = moment(curDate).subtract(1, 'day').format("DD MMM YYYY")
       this.setState({
-         currentDate:previousDay
+         currentDate: previousDay
       })
    }
 
    nextDay = () => {
-      const curDate = this.state.currentDate; 
+      const curDate = this.state.currentDate;
       var nextDay = moment(curDate).add(1, 'day').format("DD MMM YYYY")
       this.setState({
-         currentDate:nextDay
+         currentDate: nextDay
       })
    }
 
    setToday = () => {
       const today = moment().format("DD MMM YYYY");
       this.setState({
-         currentDate:today
+         currentDate: today
       })
    }
 
    render() {
       return (
          <div id="container">
-            <Header currentDate={this.state.currentDate} prevDay={() => this.prevDay()} nextDay={() => this.nextDay()} setToday={() => this.setToday()}/>
+            <Header currentDate={this.state.currentDate} prevDay={() => this.prevDay()} nextDay={() => this.nextDay()} setToday={() => this.setToday()} />
             <br />
             <DayView currentDate={this.state.currentDate} />
          </div>

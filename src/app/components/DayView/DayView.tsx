@@ -10,7 +10,7 @@ interface Props {
     headerData: [],
     addEvent?: (currId: any) => void,
     deleteEvent?: (eventId: any) => void,
-    currentDate : any
+    currentDate: any
 }
 
 class DayView extends React.Component<Props> {
@@ -21,7 +21,6 @@ class DayView extends React.Component<Props> {
 
     diplayTimeLine = (time: Array<any>) => {
         return time.map((item, index) => {
-            
             const time = moment(item, ['HH:mm:ss']).format('hh:mm A');
             return (
                 <React.Fragment key={index}>
@@ -29,60 +28,51 @@ class DayView extends React.Component<Props> {
                         <td className="time">{time}</td>
                         <td className="time-data" data-time={item}></td>
                     </tr>
-                    {/* <tr>
-                        <td className="time">&nbsp;</td>
-                        <td className="time-data" data-time={item.substr(0, 2) + ':30'}></td>
-                    </tr> */}
                 </React.Fragment>
             )
         })
     }
 
-
     dispalyEvent = () => {
         const allEvent = this.props.headerData;
-        return allEvent.map((event:any, index) => {
+        return allEvent.map((event: any, index) => {
             const eventDate = event['startTime'].substring(4, 15);
             const currentFDate = moment(this.props.currentDate).format("MMM DD YYYY");
-            if(eventDate === currentFDate) {
+            if (eventDate === currentFDate) {
                 const eventTime = event['startTime'].substring(16, 24);
-                                
-                let timeSt:any = document.querySelector('[data-time='+'"'+eventTime+'"'+']');
-
+                let timeSt: any = document.querySelector('[data-time=' + '"' + eventTime + '"' + ']');
+                //outer div to display event
                 let d = document.createElement('div');
-
                 d.innerHTML = event['title'];
                 d.style.backgroundColor = '#f8d7da';
                 d.style.border = '1px solid #f5c6cb';
                 d.style.borderRadius = '4px';
                 d.style.padding = '7px 10px';
                 d.style.margin = '0px';
-                
-                timeSt.appendChild(d);
-
+                //delete button for event
                 const deleteLink = document.createElement('button')
-                deleteLink.setAttribute('data-val',event['id'])
+                deleteLink.setAttribute('data-val', event['id'])
                 deleteLink.addEventListener("click", this.props.deleteEvent);
                 deleteLink.innerHTML = 'x';
-
-                d.appendChild(deleteLink);
-
+                //edit button for event
                 const editLink = document.createElement('a');
-                editLink.setAttribute('href',"#/edit-event/"+event['id']);
+                editLink.setAttribute('href', "#/edit-event/" + event['id']);
                 editLink.setAttribute('class', 'editEventBtn');
                 editLink.innerHTML = 'Edit';
 
+                timeSt.appendChild(d);
+                d.appendChild(deleteLink);
                 d.appendChild(editLink);
             }
         })
     }
 
     clearAllEvent = () => {
-        let td:any = document.querySelectorAll("td.time-data")
-        td.forEach(function(item:any) {
+        let td: any = document.querySelectorAll("td.time-data")
+        td.forEach(function (item: any) {
             item.innerHTML = '';
             item.style.borderLeft = '1px solid #ffeeba';
-        })        
+        })
     }
 
     render() {
@@ -98,8 +88,6 @@ class DayView extends React.Component<Props> {
                 </table>
             </div>
         )
-        
-        
     }
 }
 
@@ -110,7 +98,7 @@ const mapStateToProps = (state: any) => {
 }
 
 const matchDispatchToProps = (dispatch: any) => {
-    return bindActionCreators({ addEvent: addEvent, deleteEvent : deleteEvent}, dispatch)
+    return bindActionCreators({ addEvent: addEvent, deleteEvent: deleteEvent }, dispatch)
 }
 
 export default connect(mapStateToProps, matchDispatchToProps)(DayView);

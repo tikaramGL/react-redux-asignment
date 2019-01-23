@@ -1,18 +1,18 @@
 import * as React from 'react';
 import './NewEvent.css';
 import { Link } from 'react-router-dom';
-import {addEvent} from '../../actions/header';
+import { addEvent } from '../../actions/header';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 interface Props {
-   addEvent ?: (event:any) => void 
-   history : any
+   addEvent?: (event: any) => void
+   history: any
 }
 
 class NewEvent extends React.Component<Props> {
-    render() {
-      const handleEvent = (event:any) => {
+   render() {
+      const handleEvent = (event: any) => {
          event.preventDefault();
          this.props.addEvent(event)
          this.props.history.push("/");
@@ -44,7 +44,7 @@ class NewEvent extends React.Component<Props> {
          </div>
       )
    }
-} 
+}
 
 const mapStateToProps = (state: any) => {
    return {}

@@ -10,7 +10,7 @@ import * as moment from 'moment';
 interface Props {
    editEvent?: (event: any) => void,
    match: any,
-   history : any
+   history: any
 }
 
 interface State {
@@ -36,10 +36,10 @@ class EditEvent extends React.Component<Props, State> {
       const storeObj: any = store.getState()
       let eventObj = storeObj.header.events[eventId - 1];
       this.setState({
-         title:eventObj.title,
-         startTime:eventObj.startTime,
-         endTime:eventObj.endTime,
-         id:eventObj.id,
+         title: eventObj.title,
+         startTime: eventObj.startTime,
+         endTime: eventObj.endTime,
+         id: eventObj.id,
       })
    }
 
@@ -47,26 +47,25 @@ class EditEvent extends React.Component<Props, State> {
       this.setEvenData();
    }
 
-   handleTitleChange = (e:any) => {
-      this.setState({'title': e.target.value});
+   handleTitleChange = (e: any) => {
+      this.setState({ 'title': e.target.value });
    }
 
-   handleStartTimeChange = (e:any) => {
-      this.setState({'startTime': e.target.value});
+   handleStartTimeChange = (e: any) => {
+      this.setState({ 'startTime': e.target.value });
    }
 
-   handleEndTimeChange = (e:any) => {
-      this.setState({'endTime': e.target.value});
+   handleEndTimeChange = (e: any) => {
+      this.setState({ 'endTime': e.target.value });
    }
 
    render() {
       const handleEvent = (event: any) => {
          event.preventDefault();
-         //let eventObj = this.state;
          this.props.editEvent(event);
          this.props.history.push("/");
       }
-      
+
       return (
          <div id="newEventForm">
             <Link to="/">
