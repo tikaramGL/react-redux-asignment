@@ -27,7 +27,7 @@ h1 {
   color: black
 }
 
-td>a.editEventBtn {
+td>div>a.editEventBtn {
   float: right;
   margin-right: 5px;
   width: 30px;
@@ -40,7 +40,7 @@ td>a.editEventBtn {
   text-decoration: none;
 }
 
-td>button {
+td>div>button {
   float: right;
   /* width: 42px; */
   height: 24px;

@@ -48,22 +48,31 @@ class DayView extends React.Component<Props> {
                 const eventTime = event['startTime'].substring(16, 24);
                                 
                 let timeSt:any = document.querySelector('[data-time='+'"'+eventTime+'"'+']');
-                timeSt.innerHTML = event['title'];
-                timeSt.style.borderLeft = '3px solid #8c57d9';
+
+                let d = document.createElement('div');
+
+                d.innerHTML = event['title'];
+                d.style.backgroundColor = '#f8d7da';
+                d.style.border = '1px solid #f5c6cb';
+                d.style.borderRadius = '4px';
+                d.style.padding = '7px 10px';
+                d.style.margin = '0px';
+                
+                timeSt.appendChild(d);
 
                 const deleteLink = document.createElement('button')
                 deleteLink.setAttribute('data-val',event['id'])
                 deleteLink.addEventListener("click", this.props.deleteEvent);
                 deleteLink.innerHTML = 'x';
 
-                timeSt.appendChild(deleteLink);
+                d.appendChild(deleteLink);
 
                 const editLink = document.createElement('a');
                 editLink.setAttribute('href',"#/edit-event/"+event['id']);
                 editLink.setAttribute('class', 'editEventBtn');
                 editLink.innerHTML = 'Edit';
 
-                timeSt.appendChild(editLink);
+                d.appendChild(editLink);
             }
         })
     }
