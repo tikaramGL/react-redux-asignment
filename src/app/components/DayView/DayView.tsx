@@ -71,7 +71,6 @@ class DayView extends React.Component<Props> {
         let td: any = document.querySelectorAll("td.time-data")
         td.forEach(function (item: any) {
             item.innerHTML = '';
-            item.style.borderLeft = '1px solid #ffeeba';
         })
     }
 

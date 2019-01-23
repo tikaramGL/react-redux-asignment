@@ -49,3 +49,8 @@ td>div>button {
   color: white;
   text-decoration: none;
 }
+
+.view-container {
+  overflow-y: scroll;
+  max-height: 490px;
+}
