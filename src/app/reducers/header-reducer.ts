@@ -1,3 +1,5 @@
+import * as moment from 'moment';
+
 const dataArray = [
     {
         "startTime": "Wed Jan 16 2019 01:00:00 GMT+0530 (IST)",
@@ -44,10 +46,10 @@ export const headerReducer = (state: any, action: any) => {
 
         case 'EDIT_EVENT':
             let updateObj = {
-                startDate: action.payload.startTime || "",
-                endDate: action.payload.endTime || "",
-                title: action.payload.title || "",
-                id: parseInt(action.payload.id) || ""
+                startDate: new Date(getTimezoneDifference(action.payload.target[1].valueAsNumber)).toString() || "",
+                endDate: new Date(getTimezoneDifference(action.payload.target[2].valueAsNumber)).toString() || "",
+                title: action.payload.target[0].value || "",
+                id: action.payload.target[3].value || ""
             }
             let foundItem = state.events.find((ele: any) => ele.id == updateObj.id)
             foundItem.id = updateObj.id;

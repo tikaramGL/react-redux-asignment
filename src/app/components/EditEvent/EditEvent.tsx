@@ -62,8 +62,8 @@ class EditEvent extends React.Component<Props, State> {
    render() {
       const handleEvent = (event: any) => {
          event.preventDefault();
-         let eventObj = this.state;
-         this.props.editEvent(eventObj);
+         //let eventObj = this.state;
+         this.props.editEvent(event);
          this.props.history.push("/");
       }
       
@@ -81,13 +81,13 @@ class EditEvent extends React.Component<Props, State> {
                </div>
                <div>
                   <label>Start Time:</label>
-                  <input id="startTime" name="startTime" type="datetime-local" value={this.state.startTime} onChange={(e) => this.handleStartTimeChange(e)} />
+                  <input id="startTime" name="startTime" type="datetime-local" value={moment(this.state.startTime).format('YYYY-MM-DDTHH:mm')} onChange={(e) => this.handleStartTimeChange(e)} />
                </div>
                <div>
                   <label>End Time:</label>
-                  <input id="endTime" name="endTime" type="datetime-local" value={this.state.endTime} onChange={(e) => this.handleEndTimeChange(e)} />
+                  <input id="endTime" name="endTime" type="datetime-local" value={moment(this.state.endTime).format('YYYY-MM-DDTHH:mm')} onChange={(e) => this.handleEndTimeChange(e)} />
                </div>
-               <input type="hidden" name="eventId" value={this.state.id}></input>
+               <input type="hidden" id="eventId" name="eventId" value={this.state.id}></input>
                <div>
                   <input className="submitBtn" type="submit" value="Submit"></input>
                </div>
