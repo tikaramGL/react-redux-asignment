@@ -96,12 +96,10 @@ class EditEvent extends React.Component<Props, State> {
    }
 }
 
-const mapStateToProps = (state: any) => {
-   return {}
-}
+
 
 const matchDispatchToProps = (dispatch: any) => {
    return bindActionCreators({ editEvent: editEvent }, dispatch)
 }
 
-export default connect(mapStateToProps, matchDispatchToProps)(EditEvent);
+export default connect(null, matchDispatchToProps)(EditEvent);

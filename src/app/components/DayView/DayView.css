@@ -7,6 +7,12 @@ table {
   color: black;
   width: 100%;
   background-color: #fcf8e3;
+  /*  */
+  position: relative;
+}
+
+table td{
+  height: 20px;
 }
 
 td.time {
@@ -19,7 +25,7 @@ td.time {
 }
 
 table, tr, td {
-  border: 1px solid #ffeeba;
+  /* border: 1px solid #ffeeba; */
   padding: 15px;
 }
 
@@ -27,7 +33,7 @@ h1 {
   color: black
 }
 
-td>div>a.editEventBtn {
+div>a.editEventBtn {
   float: right;
   margin-right: 5px;
   width: 30px;
@@ -40,7 +46,7 @@ td>div>a.editEventBtn {
   text-decoration: none;
 }
 
-td>div>button {
+div>button {
   float: right;
   height: 24px;
   margin-top: -5px;

@@ -33,6 +33,10 @@ class DayView extends React.Component<Props> {
         })
     }
 
+    toggleEvent = () => {
+        
+    }
+
     dispalyEvent = () => {
         const allEvent = this.props.headerData;
         return allEvent.map((event: any, index) => {
@@ -40,15 +44,27 @@ class DayView extends React.Component<Props> {
             const currentFDate = moment(this.props.currentDate).format("MMM DD YYYY");
             if (eventDate === currentFDate) {
                 const eventTime = event['startTime'].substring(16, 24);
-                let timeSt: any = document.querySelector('[data-time=' + '"' + eventTime + '"' + ']');
+                let startTime = moment(event['startTime'].substring(16, 24), "HH:mm:ss");
+                let endTime = moment(event['endTime'].substring(16, 24), "HH:mm:ss");
+                let diffInHrs = endTime.diff(startTime, 'hours');
                 //outer div to display event
                 let d = document.createElement('div');
-                d.innerHTML = event['title'];
+                d.innerHTML = event['title']+' | '+moment(event['startTime']).format("hh:mm A")+' | '+moment(event['endTime']).format("hh:mm A");
+                d.setAttribute('class', 'eventDiv');
                 d.style.backgroundColor = '#f8d7da';
                 d.style.border = '1px solid #f5c6cb';
                 d.style.borderRadius = '4px';
                 d.style.padding = '7px 10px';
                 d.style.margin = '0px';
+                d.style.display = 'block';
+                d.style.position = 'absolute';
+                d.style.marginLeft = '100px';
+                let a = (event['startTime'].substring(16, 18)-9)*51+'px';
+                let b = ((diffInHrs+1)*44)+'px';
+                d.style.top = a.toString();
+                d.style.height = b.toString();
+                d.style.zIndex = (100-index).toString();
+                d.addEventListener("click", this.toggleEvent);
                 //delete button for event
                 const deleteLink = document.createElement('button')
                 deleteLink.setAttribute('data-val', event['id'])
@@ -59,8 +75,9 @@ class DayView extends React.Component<Props> {
                 editLink.setAttribute('href', "#/edit-event/" + event['id']);
                 editLink.setAttribute('class', 'editEventBtn');
                 editLink.innerHTML = 'Edit';
-
-                timeSt.appendChild(d);
+                if(document.querySelector('table') != null) {
+                    document.querySelector('table').appendChild(d);
+                }
                 d.appendChild(deleteLink);
                 d.appendChild(editLink);
             }
@@ -68,10 +85,8 @@ class DayView extends React.Component<Props> {
     }
 
     clearAllEvent = () => {
-        let td: any = document.querySelectorAll("td.time-data")
-        td.forEach(function (item: any) {
-            item.innerHTML = '';
-        })
+        const elements = document.getElementsByClassName("eventDiv");
+        while (elements.length > 0) elements[0].remove();
     }
 
     render() {
